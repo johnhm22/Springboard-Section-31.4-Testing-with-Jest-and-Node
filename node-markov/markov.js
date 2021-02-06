@@ -31,41 +31,40 @@ class MarkovMachine {
           }
         }
       }
-      console.log(this.chain)
+      // console.log(this.chain)
     }
 
   
   
 //     /** return random text from chains */
   
-    makeText(numWords = 100) {
+    makeText(numWords = 50) {
       // TODO
       //pick a starting word randomly (use the words array)
       let text = "";
       let length = this.words.length;
       let word = this.words[0];
       let n = 0;
-      
+      let wordsUsed = 0;
 
-      while (text.indexOf(null) == -1){
+      while (text.indexOf(null) == -1 && wordsUsed <= numWords){
       let i = Math.floor(Math.random()*length);
       let word = this.words[i];
       let selectedWordArrayLength = this.chain[word].length;
       let j = Math.floor(Math.random()*selectedWordArrayLength);
       let wordToAdd = this.chain[word][j]
       text = text + ' ' + wordToAdd;
+      wordsUsed++;
 
       }
       console.log(text.replace('null',''));
-
-      // REMOVE null BEFORE CONSOLE.LOG
 
     }
  
 }
 
 
-    let mm = new MarkovMachine("the cat in the hat");
+    // let mm = new MarkovMachine("the cat in the hat");
 
 
     module.exports = {MarkovMachine};
